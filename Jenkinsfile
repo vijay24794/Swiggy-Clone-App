@@ -54,7 +54,8 @@ pipeline{
                    withDockerRegistry(credentialsId: 'dockerhub', toolName: 'docker')
                     { 
                        sh "docker build -t swiggy-app ."
-                       sh "docker tag swiggy-app vijay24794/swiggy-app:latest "
+                       sh "docker tag swiggy-app vijay24794/swiggy-app:${BUILD_NUMBER} "
+                       sh "docker tag swiggy-app:${BUILD_NUMBER} vijay24794/swiggy-app:latest "
                        sh "docker push vijay24794/swiggy-app:latest "
                     }
                 }
