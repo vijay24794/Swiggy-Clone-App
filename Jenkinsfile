@@ -32,7 +32,7 @@ pipeline{
                 }
             } 
         }
-        stage('Install Dependencies') {
+        stage('Install-Dependencies') {
             steps {
                 sh "npm install"
             }
@@ -55,7 +55,7 @@ pipeline{
                     { 
                        sh "docker build -t swiggy-app ."
                        sh "docker tag swiggy-app vijay24794/swiggy-app:latest "
-                       sh "docker push shreedhar4037/swiggy-app:latest "
+                       sh "docker push vijay24794/swiggy-app:latest "
                     }
                 }
             }
