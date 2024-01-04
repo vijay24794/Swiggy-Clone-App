@@ -48,6 +48,24 @@ pipeline{
                 sh "trivy fs . > trivyfs.txt"
             }
         }
+        stage("Docker Build & Push"){
+            steps{
+                script{
+                   withDockerRegistry(credentialsId: 'dockerhub', toolName: 'docker')
+                    { 
+                       sh "docker build -t swiggy-app ."
+                       sh "docker tag swiggy-app vijay24794/swiggy-app:latest "
+                       sh "docker push shreedhar4037/swiggy-app:latest "
+                    }
+                }
+            }
+        }
+        stage("TRIVY"){
+            steps{
+                sh "trivy image vijay24794/swiggy-app:latest > trivyimage.txt" 
+            }
+        }
+
     }
         
 }
